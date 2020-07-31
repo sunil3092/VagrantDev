@@ -21,6 +21,21 @@ ufw allow 'Nginx Full'
 systemctl start nginx
 # systemctl status nginx
 
+# replace file contents with
+# vi /etc/nginx/sites-available/default
+# this to forward port
+# server {
+# listen 80;
+# location / {
+# proxy_pass http://localhost:5000;
+# proxy_http_version 1.1;
+# proxy_set_header Upgrade $http_upgrade;
+# proxy_set_header Connection keep-alive;
+# proxy_set_header Host $http_host;
+# proxy_cache_bypass $http_upgrade;
+# }
+# }
+
 # ------------------------------------------------------
 #----------------Install Sql sever----------------------
 # ------------------------------------------------------
