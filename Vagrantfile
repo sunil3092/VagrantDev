@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Box Settings
+  config.vm.box = "ubuntu/xenial64"
+
+  # Provider Settings
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 2048
+    vb.cpus = 2
+  end
+
+  # Automatic Update Settings
+  # config.vm.box_check_update = false
+
+  # ------------------ Provison Settings ----------------
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   apt-get update
+  #   apt-get install -y apache2
+  # SHELL
+  
+  config.vm.provision "shell", path:"setup.sh"
+
+  #--------------------------------------------------------
+
+  #---------------------Network Settings----------------------------------------------
+   config.vm.network "forwarded_port", guest: 1433, host: 2433
+
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+  # config.vm.network "private_network", ip: "192.168.33.10"
+
+  # config.vm.network "public_network"
+
+  #-----------------------------------------------------------------------------------
+
+  # Synced Folder Settings
+  config.vm.synced_folder ".", "/vagrant_data"
+
+end
