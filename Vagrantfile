@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
 
   #---------------------Network Settings----------------------------------------------
    config.vm.network "forwarded_port", guest: 1433, host: 2433
+   config.vm.network "forwarded_port", guest: 80, host: 3030
 
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
@@ -37,6 +38,6 @@ Vagrant.configure("2") do |config|
   #-----------------------------------------------------------------------------------
 
   # Synced Folder Settings
-  config.vm.synced_folder ".", "/vagrant_data"
+  config.vm.synced_folder "./Projects", "/var/www"
 
 end

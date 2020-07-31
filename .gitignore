@@ -7,3 +7,6 @@
 
 ### Vagrant Patch ###
 *.box
+
+# ProjectFiles
+Projects/

@@ -7,10 +7,19 @@ apt-get upgrade
 # Install Git
 apt-get install -y git
 
-# # Install Nginx
-# apt-get install -y nginx
-# ufw allow 'Full'
-# ufw allow 'Nginx HTTPS'
+# Insall Dotnet
+wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install -y dotnet-sdk-3.1
+
+# Install Nginx
+apt-get install -y nginx
+/etc/init.d/nginx start
+ufw allow 'Nginx Full'
+systemctl start nginx
+# systemctl status nginx
 
 # ------------------------------------------------------
 #----------------Install Sql sever----------------------
@@ -145,12 +154,37 @@ QUIT
 
 echo Done!
 
-# # Installing Posgres database
-#  sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-#  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-#  apt-get update
-#  apt-get install postgresql
-# find / -name "postgresql.conf"
+
+
+
+ # Installing Posgres database
+ sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+ apt-get update
+ apt-get install -y postgresql
+
+
+# vim $(find / -name "postgresql.conf")
+# /etc/postgresql/12/main/postgresql.conf
+
+# sed -i "s/#listen_addresses ='localhost'/listen_addresses = '*'/g" /etc/postgresql/12/main/postgresql.conf
+
+
+#  sed -i -e "s/listen_addresses ='localhost'/listen_addresses = '*'/g" find / -name "postgresql.conf" 
+
+#  sed -i -e "s/listen_addresses ='localhost'/listen_addresses = '*'/g" /tmp/file.txt
+
+
+#  vi /etc/postgresql/9.6/main/pg_hba.conf
+
+# host    all             all             0.0.0.0/0            md5
+# # IPv6 local connections:
+# host    all             all             ::0/0                 md5
+# # All IPs
+# host    all             all              all                 md5
+
+# systemctl restart postgresql
+# ufw allow 5432/tcp
 
 # Installing MongoDB
 # wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
