@@ -1,6 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+
+# Name: postgresql
+# UserName: admin
+# Password: Password1#
+# DB-Name: admin -- temp
+
 Vagrant.configure("2") do |config|
 
   # Box Settings
