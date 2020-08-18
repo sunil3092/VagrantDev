@@ -5,7 +5,7 @@ APP_DB_USER=admin
 APP_DB_PASS='Password1#'
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
-APP_DB_NAME=admin
+APP_DB_NAME=GL
 
 # Edit the following to change the version of PostgreSQL that is installed
 PG_VERSION=10
