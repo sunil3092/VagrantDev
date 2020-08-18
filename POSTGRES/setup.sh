@@ -8,7 +8,7 @@ APP_DB_PASS='Password1#'
 APP_DB_NAME=admin
 
 # Edit the following to change the version of PostgreSQL that is installed
-PG_VERSION=12.4
+PG_VERSION=10
 
 ###########################################################
 # Changes below this line are probably not necessary
